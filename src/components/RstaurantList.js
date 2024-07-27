@@ -6,7 +6,12 @@ const RestaurantList = () => {
     const [restaurants, setRestaurants] = useState([]);
     const [error, setError] = useState(null);
 
-   
+    useEffect(() => {
+        fetch(${apiUrl}/restaurants)
+            .then(response => response.json())
+            .then(data => setRestaurants(data))
+            .catch(err => setError(err.message));
+    }, []);
 
     return (
         <div>
