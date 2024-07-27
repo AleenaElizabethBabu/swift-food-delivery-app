@@ -7,7 +7,7 @@ const RestaurantList = () => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        fetch(${apiUrl}/restaurants)
+        fetch(${  }/restaurants)
             .then(response => response.json())
             .then(data => setRestaurants(data))
             .catch(err => setError(err.message));
