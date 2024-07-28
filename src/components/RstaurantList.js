@@ -1,5 +1,3 @@
-Update src/components/RestaurantList.js to handle errors:
-
 import React, { useEffect, useState } from 'react';
 
 const RestaurantList = () => {
@@ -7,7 +5,7 @@ const RestaurantList = () => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        fetch(${  }/restaurants)
+        fetch(`${apiUrl}/restaurants`)
             .then(response => response.json())
             .then(data => setRestaurants(data))
             .catch(err => setError(err.message));
