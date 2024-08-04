@@ -5,6 +5,7 @@ const OrderForm = () => {
         <div>
             <h2>Order Food</h2>
             {/* Order form goes here */}
+            <input type="text" placeholder="Enter your name" /> 
         </div>
     );
 };
