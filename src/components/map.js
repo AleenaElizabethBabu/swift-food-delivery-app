@@ -17,9 +17,10 @@ const Map = () => {
             <GoogleMap
                 mapContainerStyle={containerStyle}
                 center={center}
-                zoom={12}
+                zoom={12} // Adjusted zoom level from 10 to 12
             >
                 {/* Child components, such as markers, info windows, etc. */}
+                {/* Map loaded successfully */}
             </GoogleMap>
         </LoadScript>
     );
