@@ -1,1 +1,1 @@
-This is an application for ordering food items online. The main functionalities include searching food items and restaurents, browsing through food items, adding them to cart and checkout.
+This is an application for ordering food items online. The main functionalities include searching food items and restaurants, browsing through food items, viewing the restaurant location, adding them to cart and checkout.
