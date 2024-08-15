@@ -7,22 +7,23 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 
+
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    private static final String DATABASE_NAME = "SWIFTData";
+    public static final String DATABASE_NAME = "SWIFTData";
+
+   
+    public static final String TABLE_USERS = "Users";
+    public static final String COLUMN_USER_ID = "Id";
+    public static final String COLUMN_USER_NAME = "Name";
+    public static final String COLUMN_USER_PASSWORD = "Password";
 
     
-    private static final String TABLE_CUSTOMERS = "Customers";
-    private static final String COLUMN_ID = "Id";
-    private static final String COLUMN_NAME = "Name";
-    private static final String COLUMN_PASSWORD = "Password";
-
-  
-    private static final String TABLE_ORDERS = "OrderDetails";
-    private static final String COLUMN_ORDER_NO = "OrderNo";
-    private static final String COLUMN_ITEM_NAME = "ItemName";
-    private static final String COLUMN_ITEM_QUANTITY = "ItemQuantity";
-    private static final String COLUMN_ITEM_PRICE = "ItemPrice";
+    public static final String TABLE_ORDERS = "Orders";
+    public static final String COLUMN_ORDER_NO = "OrderNo";
+    public static final String COLUMN_ITEM_NAME = "ItemName";
+    public static final String COLUMN_ITEM_QUANTITY = "ItemQuantity";
+    public static final String COLUMN_ITEM_PRICE = "ItemPrice";
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);
@@ -30,10 +31,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE " + TABLE_CUSTOMERS + " (" +
-                COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                COLUMN_NAME + " TEXT, " +
-                COLUMN_PASSWORD + " TEXT)");
+        db.execSQL("CREATE TABLE " + TABLE_USERS + " (" +
+                COLUMN_USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                COLUMN_USER_NAME + " TEXT, " +
+                COLUMN_USER_PASSWORD + " TEXT)");
+
         db.execSQL("CREATE TABLE " + TABLE_ORDERS + " (" +
                 COLUMN_ORDER_NO + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COLUMN_ITEM_NAME + " TEXT, " +
@@ -43,36 +45,34 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_CUSTOMERS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_USERS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_ORDERS);
         onCreate(db);
     }
 
-    public boolean addAccount(String name, String password) {
+    public boolean addUser(String name, String password) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(COLUMN_NAME, name);
-        contentValues.put(COLUMN_PASSWORD, password);
-        long result = db.insert(TABLE_CUSTOMERS, null, contentValues);
+        contentValues.put(COLUMN_USER_NAME, name);
+        contentValues.put(COLUMN_USER_PASSWORD, password);
+        long result = db.insert(TABLE_USERS, null, contentValues);
         return result != -1;
     }
 
-    public Cursor getAccounts() {
+    public Cursor getUsers() {
         SQLiteDatabase db = this.getWritableDatabase();
-        return db.rawQuery("SELECT * FROM " + TABLE_CUSTOMERS, null);
+        return db.rawQuery("SELECT * FROM " + TABLE_USERS, null);
     }
 
-    public Cursor checkAccount(String searchStr) {
+    public Cursor checkUserAccount(String searchStr) {
         SQLiteDatabase db = this.getWritableDatabase();
-        return db.rawQuery("SELECT * FROM " + TABLE_CUSTOMERS + " WHERE " +
-                COLUMN_NAME + " LIKE '%" + searchStr + "%'", null);
+        return db.rawQuery("SELECT * FROM " + TABLE_USERS + " WHERE " + COLUMN_USER_NAME + " LIKE '%" + searchStr + "%'", null);
     }
 
-    
-    public boolean addToCart(String itemName, String quantity, String price) {
+    public boolean addOrder(String name, String quantity, String price) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(COLUMN_ITEM_NAME, itemName);
+        contentValues.put(COLUMN_ITEM_NAME, name);
         contentValues.put(COLUMN_ITEM_QUANTITY, quantity);
         contentValues.put(COLUMN_ITEM_PRICE, price);
         long result = db.insert(TABLE_ORDERS, null, contentValues);
