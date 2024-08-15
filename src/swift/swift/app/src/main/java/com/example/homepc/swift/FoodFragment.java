@@ -13,7 +13,7 @@ public class FoodFragment extends Fragment {
     DatabaseHelper mydb;
 
     public FoodFragment() {
-        // Required empty public constructor
+       
     }
 
     @Override
