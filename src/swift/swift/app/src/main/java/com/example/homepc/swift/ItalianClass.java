@@ -1,32 +1,25 @@
-package com.swift.delivery.app;
-
+package com.example.homepc.restauranteatitapp;
 
 public class ItalianClass {
-    private String itemName;
-    private String itemPrice;
-    private int itemImage;
-    public String itemQuantity;
+    private String Itemname;
+    private String Itemprice;
+    private int Itemimage;
+    public String Itemquantity;
 
-    public ItalianClass(String iName, String iPrice, int iImage, String iQuantity) {
-        itemName = iName;
-        itemPrice = iPrice;
-        itemImage = iImage;
-        itemQuantity = iQuantity;
+    public ItalianClass(String iName, String iPrice, int iImage, String iquantity) {
+        Itemname = iName;
+        Itemprice = iPrice;
+        Itemimage = iImage;
+        Itemquantity = iquantity;
     }
 
     public String getItemName() {
-        return itemName;
+        return Itemname;
     }
 
-    public String getItemPrice() {
-        return itemPrice;
-    }
+    public String getItemPrice() { return Itemprice; }
 
-    public int getImageResourceId() {
-        return itemImage;
-    }
+    public int getImageResourceId() { return Itemimage; }
 
-    public String getItemQuantity() {
-        return itemQuantity;
-    }
+    public String getItemquantity() { return Itemquantity; }
 }
